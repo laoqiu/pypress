@@ -28,7 +28,7 @@ python manage.py createall
 4. create user
 create admin:
 python manage.py createcode -r admin
-create 3 member:
+create three members:
 python manage.py createcode -r member -n 3
 
 5. run
