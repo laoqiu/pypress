@@ -1,0 +1,577 @@
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text);
+body{
+    font: 0.75em/1.5em 'Georgia',Verdana,Arial,sans-serif;
+    color: #333;
+    background: #fff;
+}
+input,textarea,select{
+    font-size:12px;
+    color:#333;
+}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol{
+    margin:0;
+}
+h1 {
+    font-size: 20px;
+    line-height: 2em;
+}
+h2 {
+    font-size: 18px;
+    line-height: 2em;
+}
+h3 {
+    font-size: 14px;
+    line-height: 1.6em;
+}
+h4,h5,h6 {
+    font-size: 12px;
+    line-height: 1.5em;
+}
+.clearfix:before,.clearfix:after {
+    content:".";
+    display:block;
+    height:0;
+    overflow:hidden;
+}
+.clearfix:after, .clear {
+    clear:both;
+}
+.clearfix{
+    zoom:1; /* IE < 8 */
+}
+
+a {
+    color: #06c;
+    text-decoration: none;
+    outline:none;
+}
+a:hover {
+    background-color: #ffd;
+    color: #069;
+    text-decoration: underline;
+}
+
+a img {
+  border: 0;  
+}
+
+blockquote {
+    color: #555;
+    font-style: italic;
+    font-size: 17px;
+}
+
+input.button {
+    cursor: pointer;
+    padding: 2px 10px;
+    border: 1px solid #ccc;
+    border-color: #aaa #aaa #666;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow:0 1px 3px #ddd;
+    -moz-box-shadow: 0 1px 3px #ddd;
+    color: #555;
+    background: #f5f5f5 url("bg_button.png");
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0 1px 1px #fff;
+}
+input.button:hover {
+    -webkit-box-shadow:0 1px 2px #eee;
+    -moz-box-shadow: 0 1px 2px #eee;
+    background-color: #fff;
+    border-color: #ccc #ccc #999;
+}
+input.button::-moz-focus-inner{border-color:transparent!important;} 
+input.text,
+textarea.text {
+    margin-right: 10px;
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-color: #ccc;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow:0 0px 5px #ccc;
+    -moz-box-shadow: 0 0px 5px #ccc;
+    color: #555;
+    font-size: 14px;
+}
+input.text:focus,
+textarea.text:focus {
+    -webkit-box-shadow:0 0px 3px #aaa;
+    -moz-box-shadow: 0 0px 3px #aaa;
+    border-color: #aaa;
+}
+
+.errors {
+    color: #f60;
+}
+
+#flashed {
+    margin-bottom: 10px;
+    padding: 5px;
+    color: #f60;
+    background: #eeefce;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+#go-to-top {
+    display: block;
+    position: fixed;
+    right: 60px;
+    bottom: 100px;
+    padding: 18px;
+    color: #666;
+    background: #ddd;
+    font: 36px/18px Helvetica,Arial,Verdana,sans-serif;
+    opacity: 0.7;
+    outline: 0 none;
+    text-decoration: none;
+    text-shadow: 0 0 1px #ddd;
+    vertical-align: baseline;    
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+} 
+#header {
+    padding: 10px 0;
+    color: #eee;
+    background: #666;
+}
+#header .head-inner {
+    margin: auto;
+    width: 950px;
+}
+#header h1 {
+    display: inline;
+    font-size: 16px;
+    margin: 0 10px 0 0;
+    color: #fff;
+    line-height: 1em;
+}
+#header ul {
+    list-style:none;
+}
+
+#footer {
+    padding: 10px 0 20px;
+    border-top: 1px solid #ddd;
+}
+#footer a {
+    color: #666;
+}
+#footer p span {
+    float: right;
+}
+
+#nav {
+    float: right;
+}
+#nav li {
+    display: inline;
+    padding: 0 10px;
+}
+#nav li a:link {
+    color: #fff;
+    text-decoration: none;
+}
+#nav li a:visited {
+    color: #ccc;
+}
+#nav li a:hover {
+    color: #f90;
+    text-decoration: underline;
+    background: none;
+}
+#nav li a:active {
+    color: #f90;
+}
+
+
+#container, #footer {
+    margin: auto;
+    width: 950px;
+}
+#container {
+    padding: 30px 0;
+    min-height: 420px;
+}
+
+#container .content {
+    float: left;
+    display: inline;
+    padding-right: 20px;
+    width: 680px;
+}
+#container .sidebar {
+    float: right;
+    display: inline;
+    width: 220px;
+}
+
+#container h2.title {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+#container h2.error {
+    border-bottom: 0;
+}
+
+.navigation-links {
+    height: 2.2em;
+    line-height: 2.2em;
+    border: 1px solid #eee;
+    border-width: 1px 0;
+    overflow: hidden;
+}
+.navigation-links .previous {
+    float: left;
+}
+.navigation-links .next {
+    float: right;
+}
+
+#tab {
+    clear: both;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    height: 26px;
+    border-bottom: 1px solid #ccc;
+}
+#tab ul {
+    padding: 0 20px;
+}
+#tab ul li {
+    float: left;
+    display: inline;
+    margin: 0 2px;
+    border: 1px solid #ccc;
+    border-width: 1px 1px 0;
+    height: 25px;
+    line-height: 25px;
+    background: #eee;
+}
+#tab ul li a {
+    display: block;
+    padding: 0 10px;
+    color: #333;
+    font-weight: bold;
+}
+#tab ul li a.selected {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.post {
+    clear: both;
+    margin-bottom: 15px;
+    padding: 0 0 15px;
+    border-bottom: 1px solid #ddd;
+}
+.post-avatar {
+    float: left;
+    display: inline;
+    margin: 0 10px 10px 0;
+    border: 1px solid #ccc;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
+.post-avatar a {
+    display: block;
+    padding: 5px;
+}
+.post-title {
+    line-height: 1.5em;
+}
+.post-title a {
+    color: #555;
+}
+.post-title a:hover {
+    color: #06c;
+    background: none;
+    text-decoration: none;
+}
+.post-byline,
+.post-tags {
+    color: #888;
+}
+.post-byline a,
+.post-tags a {
+    color: #666;
+    text-decoration: underline;
+}
+.post-byline a:hover,
+.post-tags a:hover {
+    color: #333;
+}
+
+.post-summary, .post-content {
+    clear: both;
+    font-size: 14px;
+}
+.post-summary p, .post-content p {
+    margin: 0.85em 0;
+    line-height: 1.8em;
+}
+.post-content ul, .post-content ol {
+    margin-bottom: 1.2em;
+}
+.post-meta {
+    color: #999;
+}
+.post-meta strong {
+    color: #333;
+}
+
+.post-form th, 
+.post-form td {
+    padding: 5px;
+}
+.post-form input.button {
+    padding: 5px 20px;
+}
+
+.sidebox {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.sidebox h3 {
+    line-height: 2.2em;
+    border-bottom: 1px solid #ddd;
+}
+.sidebox ul,
+.sidebox ol {
+    padding: 0;
+}
+.sidebox li {
+    list-style: none;
+    line-height: 2em;
+    border-bottom: 1px solid #eee;
+    color: #999;
+}
+.sidebox a {
+    color: #333;
+}
+.sidebox .more {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+#postnow input.button {
+    margin: 0 auto 20px;
+    padding: 5px 50px;
+    font-size: 14px;
+}
+
+#post_twitter {
+    clear: both;
+    padding-top: 15px;
+}
+#post_twitter textarea {
+    margin-bottom: 5px;
+    padding:5px;
+    width: 80%;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow:2px 2px 2px #ddd;
+    -moz-box-shadow:2px 2px 2px #ddd;
+}
+#post_twitter textarea:focus {
+    -webkit-box-shadow:0 0px 3px #aaa;
+    -moz-box-shadow: 0 0px 3px #aaa;
+    border-color: #aaa;
+}
+#post_twitter input.button {
+    padding: 4px 20px;
+    font-size: 14px;
+}
+.twitter ul {
+    padding: 0;
+}
+.twitter ul li {
+    list-style: none;
+    margin-bottom: 10px;
+    padding-bottom: 10px;    
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    line-height: 1.5em;
+}
+.twitter ul li p.meta {
+    font-size: 12px;
+    color: #999;
+}
+.twitter ul li p.meta a {
+    color: #555;
+}
+
+#searchform input.text {
+    width: 136px;
+}
+#searchform p {
+    line-height: 2em;
+}
+
+#user .avatar {
+    float: left;
+    display: inline;
+    margin: 0 10px 0 0;
+}
+#user .info h3 {
+    font-size: 16px;
+    line-height: 1.8em;
+}
+#user .info p {
+    color: #999;
+}
+
+.content #archive li,
+.content #links li {
+    padding: 5px 0;
+    line-height: 1.4em;
+}
+.content #links li p {
+    padding: 5px 0;
+    color: #999;
+}
+
+#links small {
+    float: right;
+}
+#tags li small {
+    float: right;
+}
+#tags li small a {
+    color: #999;
+}
+#tag-cloud ul {
+    padding: 0;
+}
+#tag-cloud li {
+    display: inline;
+    padding: 0 5px;
+}
+a.tag-0 { color:#aaa; font-size: 0.9em; font-weight: 100; }
+a.tag-1 { color:#999; font-size: 0.9em; font-weight: 100; }
+a.tag-2 { color:#999; font-size: 1em; font-weight: 200; }
+a.tag-3 { color:#888; font-size: 1.1em; font-weight: 300; }
+a.tag-4 { color:#777; font-size: 1.2em; font-weight: 400; }
+a.tag-5 { color:#666; font-size: 1.3em; font-weight: 500; }
+a.tag-6 { color:#555; font-size: 1.4em; font-weight: 600; }
+a.tag-7 { color:#333; font-size: 1.6em; font-weight: 700; }
+a.tag-8 { color:#000; font-size: 1.8em; font-weight: 800; }
+a.tag-9 { color:#06c; font-size: 2em; font-weight: 900; }
+a.tag-10 { color:#c60; font-size: 2em; font-weight: 900; }
+
+#comments {
+    padding: 10px 0;
+}
+.comment-add {
+    margin-bottom: 20px;
+}
+.comment-add h3 {
+    padding: 10px 0;
+}
+.comment-add p {
+    margin: 5px 0;
+}
+.comment-add input[type=text] {
+    margin-right: 5px;
+    padding: 2px;
+    width: 200px;
+}
+.comment-add textarea {
+    padding: 2px;
+    width: 60%;
+    height: 80px;
+}
+.comment-list ol {
+    list-style: none;
+    padding: 0;
+}
+.comment-list ol ol {
+    margin-left: 70px;
+}
+.comment {
+    clear: both;
+    overflow: auto;
+    margin: 15px 0;
+    padding-top: 15px;
+    width: 100%;
+    border-top: 1px solid #ddd;
+}
+.comment-avatar {
+    display: block;
+    float: left;
+    height: 60px;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+    position: relative;
+    width: 60px;
+    border: 1px solid #ddd;
+}
+.comment-avatar a {
+    display: block;
+    padding: 5px;
+}
+.comment form {
+    clear: both;
+    display: block;
+    position: absolute;
+    margin: 5px 0 0 0;
+    z-index: 999;
+    padding: 5px;
+    width: 300px;
+    border: 1px solid #ddd;
+    background: #eee;
+}
+.comment form textarea {
+    width: 290px;
+    height: 50px;
+}
+.comment-text {
+    margin: 0 0 0 72px;
+}
+
+.comment-add input.button {
+    padding: 3px 15px;
+}
+
+.form-table th,
+.form-table td {
+    padding: 5px;
+}
+.form-table th {
+    text-align: left;
+}
+.form-table input.button {
+    padding: 3px 15px;
+}
+
+.error h1 {
+    font-family: 'Crimson Text','Georgia',serif;
+    line-height: 2em;
+    font-size: 30px;
+    font-weight: normal;
+    color: #000;
+}
+.error .simple p {
+    font-size: 14px;
+    line-height: 2em;
+}
+.error form input.text {
+    width: 300px;
+}
+

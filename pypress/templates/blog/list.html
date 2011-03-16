@@ -1,0 +1,41 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+
+{%- block content %}
+<div class="content">
+{%- if page_obj.items %}
+    {%- for post in page_obj.items %}
+        <div id="post-{{ post.id }}" class="post">
+            <div class="post-avatar"><a href="{{ url_for('frontend.people', username=post.author.username) }}"><img src="{{ post.author.email|gravatar(size=50) }}" alt="{{ post.author.nickname }}" /></a></div>
+            <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <div class="post-byline">
+                By <a href="{{ url_for('frontend.people', username=post.author.username) }}">{{ post.author.nickname }}</a>. <abbr title="{{ post.created_date|format_date('full') }}" class="time">{{ post.created_date|timesince }}</abbr>
+            </div>
+            {% if post.tags %}<div class="post-tags">{% for tag,url in post.linked_taglist %}<a href="{{ url }}">{{ tag }}</a>{{ loop.last and '...' or ', ' }}{% endfor %}</div>{% endif %}
+            <div class="post-summary">
+                {{ post.summary|endtags|code_highlight|safe }}
+            </div>
+            <div class="post-info"><img alt="comment" src="{{ theme_static('comment.gif') }}"> <span class="post-comments"><a href="{{ post.url }}#comments">{{ post.num_comments }} comments</a></span></div>
+            {%- if post.update_date %}
+            <div class="post-meta">
+                <span>{{ _("Modified at") }} <abbr title="{{ post.update_date|format_date('full') }}" class="time">{{ post.update_date|timesince }}</abbr></span>
+            </div>
+            {%- endif %}
+        </div>
+    {%- endfor %}
+    {{ paginate(page_obj, page_url) }}
+{%- else %}
+    <p>{{ _("Nobody's posted anything yet.") }}</p>
+{%- endif %}
+</div>
+{%- endblock %}
+{%- block sidebar %}
+<div class="sidebar">
+    {% include "blog/_postnow.html" %}
+    {% include "blog/_search.html" %}
+    {% include "blog/_tags.html" %}
+    {% include "blog/_archive.html" %}
+    {% include "blog/_links.html" %}
+</div>
+{%- endblock %}

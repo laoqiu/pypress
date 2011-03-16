@@ -1,0 +1,19 @@
+{% extends theme("layout.html") %}
+
+{% block content %}
+<div class="error">
+    <h1>{{ _("403, Page Not Allowed") }}</h1>
+    <blockquote>
+        <p>The requested page,</p>
+        <p>cannot be allowed —  </p>
+        <p>Your permission is not enough</p>
+    </blockquote>
+    <div class="simple">
+        <p>{{ _("Maybe we can help you out though:") }}</p>
+        <ul>
+            <li><a href="{{ url_for('account.login') }}">{{ _("Login to pypress") }} - If you have member account</a></li>
+            <li>{{ _("Not a member yet?") }} <a href="{{ url_for('account.signup') }}">{{ _("Signup") }}</a> </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

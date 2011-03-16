@@ -1,0 +1,26 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+
+{%- block content %}
+<div class="content">
+    <h2 class="title">{{ _("Tags") }}</h2>
+    <div id="tag-cloud">
+        <ul>
+        {%- for tag in tags %}
+        <li><a href="{{ tag.url }}" class="tag-{{ tag.size>10 and 10 or tag.size }}">{{ tag.name }}</a></li>
+        {%- endfor %}
+        </ul>
+    </div>
+</div>
+{%- endblock %}
+{%- block sidebar %}
+<div class="sidebar">
+    {% include "blog/_postnow.html" %}
+    {% include "blog/_search.html" %}
+    {% include "blog/_tags.html" %}
+    {% include "blog/_archive.html" %}
+    {% include "blog/_links.html" %}
+</div>
+{%- endblock %}
+ 

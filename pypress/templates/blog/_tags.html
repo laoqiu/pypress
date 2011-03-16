@@ -1,0 +1,12 @@
+    <div id="tags" class="sidebox">
+        <h3>{{ _("Tags") }}</h3>
+        <div class="inner">
+        {% if tags %}
+            <ul>
+            {% for tag in tags[:10] %}
+            <li><small><a href="{{ url_for('feeds.tag',slug=tag.slug) }}">RSS</a></small><a href="{{ tag.url }}">{{ tag.name }}</a> ({{ tag.num_posts }})</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+    </div>

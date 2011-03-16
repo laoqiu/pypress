@@ -1,0 +1,15 @@
+{% macro render_errors(field) %}
+{% if field.errors %}
+<ul class="errors">
+    {% for error in field.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endmacro %}
+
+{% macro render_tips(field) %}
+{% if field.description %}
+<span class="tips">{{ field.description }}</span>
+{% endif %}
+{% endmacro %}

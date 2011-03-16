@@ -1,0 +1,32 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+
+{%- block content %}
+<div class="content">
+    <h2 class="title">{{ _("Links") }}</h2>
+    <div id="links">
+        <ul>
+        {%- for link in page_obj.items %}
+            <li id="link-{{ link.id }}"><a href="{{ link.link }}" target="_blank" title="{{ link.name }}">{{ link.name }}</a>
+            {% if link.description %}<p>{{ link.description }}</p>{% endif %}    
+            <span>
+            {%- if not link.passed and link.permissions.edit %}
+                <a href="#" onclick="pass_link('{{ url_for('link.edit', link_id=link.id) }}'); return false;" class="link-edit">{{ _("pass") }}</a>
+            {%- endif %}
+            {%- if link.permissions.delete %}
+                <a href="#" onclick="$('#delete-link-{{ link.id }}').toggle(); return false;" class="link-delete">{{ _("delete") }}</a>
+                    <div id="delete-link-{{ link.id }}" style="display:none;">
+                        <strong>{{ _("Are you sure you want to delete this link ?") }} </strong>
+                        <a href="#" onclick="delete_link('{{ url_for('link.delete', link_id=link.id) }}'); return false;">{{ _("yes") }}</a> / 
+                        <a href="#" onclick="$('#delete-link-{{ link.id }}').toggle(); return false;">{{ _("no") }}</a>
+                    </div>
+            {%- endif %}
+            </span>
+            </li>
+        {%- endfor %}
+        </ul>
+    </div>
+</div>
+{%- endblock %}
+ 

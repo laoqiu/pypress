@@ -1,0 +1,42 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_forms.html" import render_errors %}
+
+{%- block content %}
+<div class="content">
+    <h2 class="title">{{ _("Add link") }}</h2>
+    <div id="add_link">
+        <form method="POST" action=".">
+            {{ form.hidden_tag() }}
+            <table cellspacing="0" class="form-table">
+            <tbody>
+                <tr>
+                    <th>{{ form.name.label }}</th>
+                    <td>{{ form.name(size=30, class="text") }} {{ render_errors(form.name) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form.link.label }}</th>
+                    <td>{{ form.link(size=50, class="text") }} {{ render_errors(form.link) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form.email.label }}</th>
+                    <td>{{ form.email(size=50, class="text") }} {{ render_errors(form.email) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form.logo.label }}</th>
+                    <td>{{ form.logo(size=50, class="text") }} {{ render_errors(form.logo) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form.description.label }}</th>
+                    <td>{{ form.description(class="text", style="width:400px;height:100px;") }} {{ render_errors(form.description) }}</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>{{ form.submit(class="button") }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+{%- endblock %}

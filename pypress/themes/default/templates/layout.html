@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="all" />
+	<meta name="Author" content="laoqiu.com@gmail.com">
+	<meta name="Keywords" content="blog, python, flask">
+	<meta name="Description" content="flask blog by python">
+    <title> {% block title %}{% endblock %} Team blog </title>    
+    {%- block css %}
+    <link rel="stylesheet" href="{{ theme_static('style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ theme_static('highlight.css') }}" type="text/css" />
+    {%- endblock %}
+    {%- block js %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+    <script src="{{ url_for('.static', filename='js/public.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(function(){
+        $("#go-to-top").click(function(){
+            $("html, body").animate({'scrollTop': 0}, 400);
+            return false;
+        });
+        $(window).scroll(function() {
+            var top = $(document).scrollTop();
+            var g = $("#go-to-top");
+            if (top > 300 && g.is(":hidden")) {
+                g.fadeIn();
+            } else if(top < 300 && g.is(":visible")) {
+                g.fadeOut();
+            }
+        }); 
+    })
+    </script>
+    {%- endblock %}
+</head>
+
+<body>
+<div id="wrap">
+    <div id="header" class="clearfix">
+        <div class="head-inner">
+            <h1>Team blog</h1>
+            <span class="description">An archive of blog for browsing and searching</span>
+            <div id="nav">
+                <ul>
+                    <li><a href="{{ url_for('frontend.index') }}">{{ _("Home") }}</a></li>
+                    <li><a href="{{ url_for('frontend.archive') }}">{{ _("Archive") }}</a></li>
+                    <li><a href="{{ url_for('frontend.tags') }}">{{ _("Tags") }}</a></li>
+                    <li><a href="{{ url_for('frontend.about') }}">{{ _("About") }}</a></li>
+                    <li><a href="{{ url_for('feeds.index') }}">{{ _("RSS") }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="clearfix">
+        {%- if get_flashed_messages() -%}
+        <div id="flashed">
+            {% for category, msg in get_flashed_messages(with_categories=true) %}
+            <span class="flash-{{ category }}">{{ msg }}</span>
+            {% endfor %}
+        </div>
+        {%- endif -%}
+        {%- block content %}{%- endblock %}
+        {%- block sidebar %}
+        <div class="sidebar">
+            {% include "blog/_search.html" %}
+            {% include "blog/_tags.html" %}
+            {% include "blog/_archive.html" %}
+            {% include "blog/_links.html" %}
+        </div>
+        {%- endblock %}
+    </div>
+    <div id="footer" class="clearfix">
+        <p><span>{% if g.user %}<a href="{{ url_for('account.logout',next=request.path) }}">{{ _("Logout") }}</a>{% else %}<a href="{{ url_for('account.login',next=request.path) }}">{{ _("Login") }}</a>{% endif %}
+        </span>        
+        <a href="{{ url_for('frontend.about') }}">About.</a> Powered by PyPress</p>
+    </div>
+</div>
+<a style="display:none;" rel="nofollow" href="#header" id="go-to-top">▲</a>
+</body>
+</html>

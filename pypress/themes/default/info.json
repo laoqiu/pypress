@@ -1,0 +1,10 @@
+{
+    "application": "pypress", 
+    "identifier": "default", 
+    "name": "default", 
+    "author": "LaoQiu",
+    "description": "theme for pypress",
+    "license": "MIT/X11",
+    "doctype": "html5"
+}
+

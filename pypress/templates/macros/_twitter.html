@@ -1,0 +1,17 @@
+{% macro tweet_box(tweets) %}
+{%- if tweets %}
+<div class="twitter">
+    <ul>
+    {%- for tweet in tweets %}
+        <li>
+            @<a href="http://twitter.com/{{ tweet.user.screen_name }}">{{ tweet.user.screen_name }}</a>:
+            {{ tweet.text|urlize }}
+            <p class="meta">&mdash; {{ tweet.created_at|twitter_date|timesince }} ago via {{ tweet.source|safe }}</p>
+        </li>
+    {%- endfor %}
+    </ul>
+</div>
+{%- else %}
+    <h2 class="title error">No Tweets yet.</h2>
+{%- endif %}
+{% endmacro %}

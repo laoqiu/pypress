@@ -1,0 +1,75 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+{% from "macros/_forms.html" import render_errors %}
+
+{%- block content %}
+<div class="content">
+    <div id="user">
+        <div class="avatar"><img src="{{ people.email|gravatar(size=50) }}" alt="{{ people.nickname }}" /></div>
+        <div class="info">
+            <h3>{{ people.nickname }}</h3>
+            <p>{{ _("Joined in") }}:{{ people.date_joined }}</p>
+        </div>
+    </div>
+
+    {%- if people==g.user %}
+    <div id="post_twitter">
+        <form action="." method="POST">
+            {{ form.hidden_tag() }}
+            <p>{{ form.content }}</p>
+            <p>{{ form.submit(class="button") }} {{ render_errors(form.content) }}</p>
+        </form>
+    </div>
+    {%- endif %}
+
+    <div id="tab">
+    	<ul>
+            <li><a href="#posts">{{ _("Posts") }}</a></li>
+    	    <li><a href="#tweets">{{ _("Tweets") }}</a></li>
+    	</ul>
+    </div>
+
+    <div id="posts">
+    {%- if page_obj.items %}
+        {%- for post in page_obj.items %}
+            <div id="post-{{ post.id }}" class="post">
+                <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                <div class="post-byline">
+                    {{ _("Posted at") }} <abbr title="{{ post.created_date|format_date('full') }}" class="time">{{ post.created_date|timesince }}</abbr>
+                    {% if post.tags %} | {% for tag,url in post.linked_taglist %}<a href="{{ url }}">{{ tag }}</a>{{ loop.last and '...' or ', ' }}{% endfor %}{% endif %}
+                </div>
+            </div>
+        {%- endfor %}
+        {{ paginate(page_obj, page_url) }}
+    {%- else %}    
+        {%- if g.user == people %}
+            <p>{{ _("You has not posted anything yet.") }} <a href="{{ url_for('post.submit') }}">{{ _("Submit") }}</a></p>
+        {%- else %}
+            <p>{{ _("%(name)s has not posted anything yet.", name=people.nickname) }}</p>
+        {%- endif %}
+    {%- endif %}
+    </div>
+    <div id="tweets">
+        {% from "macros/_twitter.html" import tweet_box %}
+        {{ tweet_box(people.tweets) }}
+    </div>
+</div>
+{%- endblock %}
+{%- block sidebar %}
+<div class="sidebar">
+    {% include "blog/_postnow.html" %}
+    {% include "blog/_search.html" %}
+    {% include "blog/_tags.html" %}
+    {% include "blog/_archive.html" %}
+    {% include "blog/_links.html" %}
+</div>
+{%- endblock %}
+{%- block js %}
+<script type="text/javascript" src="{{ url_for('.static', filename="js/jquery.idTabs.min.js") }}"></script>
+<script type="text/javascript">
+$(function(){
+    $("#tab").idTabs();
+})
+</script>
+{%- endblock %}

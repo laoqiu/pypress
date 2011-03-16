@@ -1,0 +1,123 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_forms.html" import render_errors %}
+
+{%- block content %}
+<div class="single">
+    <h2 class="title">{{ _('Submit a post') }}</h2>
+    <form method="POST" action=".">
+        {{ form.hidden_tag() }}
+        <table cellspacing="0" class="post-form">
+        <tbody>
+            <tr>
+                <th>{{ form.title.label(style="display:block;width:100px;") }}</th>
+                <td>{{ form.title(size=50, class="text") }} {{ render_errors(form.title) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.slug.label }}</th>
+                <td>{{ form.slug(size=50, class="text") }} {{ render_errors(form.slug) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.content.label }}</th>
+                <td>{{ form.content(style="width:820px;height:400px;") }} {{ render_errors(form.content) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.tags.label }}</th>
+                <td>{{ form.tags(size=50, class="text") }} {{ render_errors(form.tags) }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>{{ form.submit(class="button") }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </form>
+
+</div>
+{%- endblock %}
+{%- block css %}
+{{ super() }}
+<!--[if lt IE 8]>
+<link href="http://a.tbcdn.cn/s/kissy/1.1.7/editor/theme/cool/editor-pkg-min-mhtml.css" rel="stylesheet"/>
+<![endif]-->
+<!--[if gte IE 8]><!-->
+<link href="http://a.tbcdn.cn/s/kissy/1.1.7/editor/theme/cool/editor-pkg-min-datauri.css" rel="stylesheet"/>
+<!--<![endif]-->
+{%- endblock %}
+{%- block js %}
+{{ super() }}
+<script src="http://a.tbcdn.cn/s/kissy/1.1.7/??kissy-min.js,uibase/uibase-pkg-min.js,dd/dd-pkg-min.js,overlay/overlay-pkg-min.js,editor/editor-all-pkg-min.js"></script>
+<script type="text/javascript">
+KISSY.ready(function(S){
+    var KE = KISSY.Editor;
+    var k = KE("#content",{
+        "attachForm":true,
+        "baseZIndex":1000,
+        customStyle:"pre{padding:5px;font-size:12px;font-family:'Courier';border:1px solid #ccc;background:#eee;} p{margin:0.85em 0;line-height:1.8em;}",
+        pluginConfig: {
+            "templates": [{
+                demo: "python code",
+                html: '<pre l="python">#Copy here...\n</pre>'},
+                {
+                demo: "html code",
+                html: '<pre l="html">\n\n</pre>'},
+                {
+                demo: "More",
+                html: '<p id="more-1'+Math.round(Math.random()*1000)+'"></p>'}
+            ],
+            "image":{
+                upload:{
+                    //success: {"imgUrl":"http://xx.com/yy.jpg"}
+                    //error: {"error":"i am error!"}
+                    serverUrl:"{{ url_for('frontend.upload') }}",
+                    serverParams:{},
+                    suffix: "png,jpg,jpeg,gif",
+                    fileInput:"Filedata"
+                }
+            },
+            "font-size":{
+                items:[{
+                    value:"14px",
+                    attrs:{
+                        style:'position: relative; border: 1px solid #DDDDDD; margin: 2px; padding: 2px;'
+                    },
+                    name:"" +
+                        " <span style='font-size:14px'>{{_('Normal')}}</span>" +
+                        "<span style='position:absolute;top:1px;right:3px;'>14px</span>"
+                },
+                {
+                    value:"16px",
+                    attrs:{
+                        style:'position: relative; border: 1px solid #DDDDDD; margin: 2px; padding: 2px;'
+                    },
+                    name:"" +
+                        " <span style='font-size:16px'>{{ _('Large') }}</span>" +
+                        "<span style='position:absolute;top:1px;right:3px;'>16px</span>"
+                },
+                {
+                    value:"20px",
+                    attrs:{
+                        style:'position: relative; border: 1px solid #DDDDDD; margin: 2px; padding: 2px;'
+                    },
+                    name:"" +
+                        " <span style='font-size:20px'>{{ _('Maximum') }}</span>" +
+                        "<span style='position:absolute;top:1px;right:3px;'>20px</span>"
+                }],
+                width:"115px"
+            },
+            "draft":{
+                interval:5,
+                limit:3
+            }
+        }
+
+    }).use("elementpaths,sourcearea,preview,separator," +
+        "undo,separator,removeformat,font,format,color,separator," +
+        "list,indent,justify,separator,link,image,flash,music,smiley," +
+        "separator,table,templates,pagebreak,resize,draft,separator,maximize"
+        );
+
+});
+</script>
+{%- endblock %}
+{%- block sidebar %}{%- endblock %}

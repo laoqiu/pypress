@@ -1,0 +1,44 @@
+{% extends theme("layout.html") %}
+{% from "macros/_forms.html" import render_errors %}
+
+{%- block content %}
+<h2 class="title">{{ _('Sign up to pypress') }}</h2>
+<div id="sign">
+    <form method="POST" action=".">
+        {{ form.hidden_tag() }}
+        <table cellspacing="0" class="form-table">
+        <tbody>
+            <tr>
+                <th>{{ form.username.label }}</th>
+                <td>{{ form.username(size=30) }} {{ render_errors(form.username) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.nickname.label }}</th>
+                <td>{{ form.nickname(size=30) }} {{ render_errors(form.nickname) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.email.label }}</th>
+                <td>{{ form.email(size=30) }} {{ render_errors(form.email) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.password.label }}</th>
+                <td>{{ form.password(size=30) }} {{ render_errors(form.password) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.password_again.label }}</th>
+                <td>{{ form.password_again(size=30) }} {{ render_errors(form.password_again) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.code.label }}</th>
+                <td>{{ form.code(size=15) }} {{ render_errors(form.code) }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>{{ form.submit }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </form>
+</div>
+{%- endblock %}
+{%- block sidebar %}{%- endblock %}

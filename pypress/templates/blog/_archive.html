@@ -1,0 +1,12 @@
+    <div id="archives" class="sidebox">
+        <h3>{{ _("Archive") }}</h3>
+        <div class="inner">
+        {% if archives %}
+        <ul>
+        {% for date in archives %}
+            <li><a href="{{ url_for('frontend.index',year=date.year,month=date.month) }}">{{ date|format_date('yyyy\u5e74MMMM') }}</a></li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        </div>
+    </div>

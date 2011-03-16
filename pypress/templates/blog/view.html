@@ -1,0 +1,102 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+{% from "macros/_post.html" import render_comment with context %}
+
+{%- block content %}
+<div class="content">
+    <div id="post-{{ post.id }}" class="post">
+        <div class="post-avatar"><a href="{{ url_for('frontend.people', username=post.author.username) }}"><img src="{{ post.author.email|gravatar(size=50) }}" alt="{{ post.author.nickname }}" /></a></div>
+        <h2 class="post-title">{{ post.title }}</h2>
+        <div class="post-byline">
+            By <a href="{{ url_for('frontend.people', username=post.author.username) }}">{{ post.author.nickname }}</a>. <abbr title="{{ post.created_date|format_date('full') }}" class="time">{{ post.created_date|timesince }}</abbr>
+        </div>
+        {% if post.tags %}<div class="post-tags">{% for tag,url in post.linked_taglist %}<a href="{{ url }}">{{ tag }}</a>{{ loop.last and '...' or ', ' }}{% endfor %}</div>{% endif %}
+        <div class="post-content">
+            {{ post.content|code_highlight|gistcode|safe }}
+        </div>
+        <div class="post-meta">
+            {% if post.update_time %}<span class="post-time">{{ _("Modified at ") }}{{ post.update_time|format_date('full') }}</span> | {% endif %}<span class="post-tags">{% for tag,url in post.linked_taglist %}<a href="{{ url }}">{{ tag }}</a> {% endfor %}</span>
+
+            {%- if post.permissions.edit %}
+            | <a href="{{ url_for('post.edit', post_id=post.id) }}">{{ _("edit this post") }}</a> 
+            {%- endif %}
+            {%- if post.permissions.delete %}
+            | <a href="#" onclick="$('#delete-post').toggle(); return false;">{{ _("delete this post") }}</a> 
+            <div id="delete-post" style="display:none;">
+                <strong>{{ _('Are you sure you want to delete this post ?') }}</strong>
+                <a href="#" onclick="ajax_post('{{ url_for('post.delete', post_id=post.id) }}'); return false;">{{ _('yes') }}</a> / 
+                <a href="#" onclick="$('#delete-post').toggle(); return false;">{{ _('no') }}</a>
+            </div>
+            {%- endif %}
+
+        </div>
+    </div>
+    
+    <div class="navigation-links">
+        <span class="previous">{% if prev_post %}&laquo; <a rel="prev" href="{{ prev_post.url }}">{{ prev_post.title }}</a>{% endif %}</span> 
+        <span class="next">{% if next_post %}<a rel="next" href="{{ next_post.url }}">{{ next_post.title }}</a> &raquo;{% endif %}</span>
+    </div>
+
+    {%- if config.USE_LOCAL_COMMENT %}
+        <div id="comments">
+            <div class="comment-add">
+                <h3>{{ _('Add a comment') }}</h3>
+                <form id="comment-form" method="POST" action="{{ url_for('post.add_comment', post_id=post.id) }}">
+                    {{ comment_form.hidden_tag() }}
+                    {%- if g.user %}
+                        {{ comment_form.email(type='hidden',value=g.user.email) }}
+                        {{ comment_form.nickname(type='hidden',value=g.user.nickname) }}
+                        {{ comment_form.website(type='hidden') }}
+                    {%- else %}                    
+                        <p>{{ comment_form.email(class="text") }} {{ comment_form.email.label }}</p>
+                        <p>{{ comment_form.nickname(class="text") }} {{ comment_form.nickname.label }}</p>
+                        <p>{{ comment_form.website(class="text") }} {{ comment_form.website.label }}</p>
+                    {%- endif %}
+                    <p>{{ comment_form.comment(class="text") }}</p>
+                    <p>{{ comment_form.submit(class="button") }}</p>
+                </form>
+            </div>
+
+            <div class="comment-list">
+                <h3>{{ _('Comments') }}</h3>
+            {%- if post.comments %}
+                <ol>
+                {%- for comment in post.comments %}
+                    {{ render_comment(comment) }}
+                {%- endfor %}
+                </ol>            
+            {%- else %}
+                <p>{{ _('No comments have been posted yet.') }}</p>
+            {%- endif %}
+            </div>
+            
+        </div>
+    {%- else %}
+        {% include 'blog/comment.html' %}
+    {%- endif %}
+</div>
+{%- endblock %}
+
+{%- block sidebar %}
+<div class="sidebar">
+    {% include "blog/_postnow.html" %}
+    {% include "blog/_search.html" %}
+    {% include "blog/_tags.html" %}
+    {% include "blog/_archive.html" %}
+    {% include "blog/_links.html" %}
+</div>
+{%- endblock %}
+
+{%- block js %}
+{{ super() }}
+<script type="text/javascript">
+$(function(){
+    $('.comment').hover(function(){
+            $(this).find('.comment-by span').show();
+        },function (){
+            $(this).find('.comment-by span').hide();
+    })
+})
+</script>
+{%- endblock %}

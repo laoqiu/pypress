@@ -1,0 +1,3 @@
+{% if g.user %}
+<div id="postnow"><input type="button" value="{{ _("Post Now") }}" class="button" onclick="location.href='{{ url_for('post.submit') }}'" /></div>
+{% endif %}

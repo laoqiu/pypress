@@ -1,0 +1,14 @@
+    <div id="links" class="sidebox">
+        <h3>{{ _("Links") }}</h3>
+        <div class="inner">            
+        {% if links %}
+            <ul>
+            {% for link in links %}
+                <li><a href="{{ link.link }}" target="_blank" title="{{ link.name }}">{{ link.name }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+            <p><small><a href="{{ url_for('link.add') }}">{{ _("Add link") }}</a></small></p>
+            <p><small class="more"><a href="{{ url_for('link.index') }}">{{ _("More") }}&raquo;</a></small></p>
+        </div>
+      </div>

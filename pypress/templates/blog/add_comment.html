@@ -1,0 +1,47 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+{% from "macros/_forms.html" import render_errors %}
+
+{%- block content %}
+<div class="content">
+    <h2 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    {%- if parent %}
+        <div class="post-content">{{ parent.markdown }}</div>
+    {%- endif %}
+    <div id="add_comment">
+    <form method="post" action=".">
+        {{ form.hidden_tag() }}
+            <table cellspacing="0" class="form-table">
+            <tbody>
+            {%- if g.user %}
+                {{ form.email(type='hidden',value=g.user.email) }}
+                {{ form.nickname(type='hidden',value=g.user.nickname) }}
+            {%- else %}                    
+                <tr>
+                    <th>{{ form.email.label }}</th>
+                    <td>{{ form.email(size=50, class="text") }} {{ render_errors(form.email) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form.nickname.label }}</th>
+                    <td>{{ form.nickname(size=50, class="text") }} {{ render_errors(form.nickname) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form.website.label }}</th>
+                    <td>{{ form.website(size=50, class="text") }} {{ render_errors(form.website) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form.comment.label }}</th>
+                    <td>{{ form.comment(class="text", style="width:400px;height:100px;") }} {{ render_errors(form.comment) }}</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>{{ form.submit(class="button") }}</td>
+                </tr>
+            {%- endif %}
+            </tbody>
+            </table>
+    </form>
+    </div>
+</div>
+{%- endblock %}

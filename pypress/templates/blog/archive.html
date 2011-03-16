@@ -1,0 +1,25 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+
+{%- block content %}
+<div class="content">
+    <h2 class="title">{{ _("Archive") }}</h2>
+    <div id="archive">
+        <ul>
+        {%- for date in archives %}
+            <li><a href="{{ url_for('frontend.index',year=date.year,month=date.month) }}">{{ date|format_date('yyyy\u5e74MMMM') }}</a></li>
+        {%- endfor %}
+        </ul>
+    </div>
+</div>
+{%- endblock %}
+{%- block sidebar %}
+<div class="sidebar">
+    {% include "blog/_postnow.html" %}
+    {% include "blog/_search.html" %}
+    {% include "blog/_tags.html" %}
+    {% include "blog/_archive.html" %}
+    {% include "blog/_links.html" %}
+</div>
+{%- endblock %}

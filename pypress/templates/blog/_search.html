@@ -1,0 +1,8 @@
+    <div id="search" class="sidebox">
+        <form action="{{ url_for('frontend.search') }}" id="searchform" method="get">
+        <div class="inner">
+            <p><label for="q">{{ _("Search all posts") }}:</label></p>
+            <input type="text" class="text" value="{{ request.args.get('q','') }}" id="q" name="q"><input type="submit" class="button" value="{{ _('Search') }}" id="searchsubmit">
+        </div>
+        </form>
+    </div>

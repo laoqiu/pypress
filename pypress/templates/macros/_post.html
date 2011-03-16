@@ -1,0 +1,55 @@
+{% macro render_comment(comment) %}
+    <li id="comment-{{ comment.id }}" class="comment">                    
+        <div class="comment-avatar">
+            <a href="{{ comment.author.website or '#' }}"><img src="{{ comment.author.email|gravatar(size=50) }}" alt="{{ comment.author.nickname }}" /></a>
+        </div>
+        <div class="comment-by">
+            <cite class="fn">{{ comment.author.nickname }}</cite>
+            <abbr title="{{ comment.created_date|format_datetime('yyyy-MM-dd H:m') }}" class="comment-time">{{ comment.created_date|timesince }}</abbr>
+            <span style="display:none;">| <a title="Permalink to comment {{ comment.id }}" href="{{ comment.permalink }}" class="permalink">{{ _("permalink") }}</a></span>
+        </div>
+        <div class="comment-text">
+            
+            {{ comment.markdown }}
+        
+            {% if g.user %}
+            <div class="comment-meta">
+                {% if comment.permissions.reply %}
+                <a href="#" onclick="$('#comment-form-{{ comment.id }}').toggle();return false;" class="comment-reply">{{ _("reply") }}</a> 
+                    <form id="comment-form-{{ comment.id }}" method="POST" action="{{ url_for('post.add_comment', post_id=post.id, parent_id=comment.id) }}" style="display:none;">
+                    {% with form = comment_form %}
+                        {{ form.hidden_tag() }}
+                        <p>{{ form.email(type='hidden',value=g.user.email) }}</p>
+                        <p>{{ form.nickname(type='hidden',value=g.user.nickname) }}</p>
+                        <p>{{ form.website(type='hidden') }}</p>
+                        <p>{{ form.comment }}</p>
+                        <p>{{ form.submit }} {{ form.cancel(onclick="$('#comment-form-%d').toggle(); return false;" % comment.id) }}</p>
+                    {% endwith %}
+                    </form>
+                {% endif %}
+
+                {% if comment.permissions.delete %}
+                <a href="#" onclick="$('#delete-comment-{{ comment.id }}').toggle(); return false;" class="comment-delete">{{ _("delete") }}</a>
+                    <div id="delete-comment-{{ comment.id }}" style="display:none;">
+                        <strong>{{ _("Are you sure you want to delete this comment ?") }} </strong>
+                        <a href="#" onclick="delete_comment('{{ url_for('comment.delete', comment_id=comment.id) }}'); return false;">{{ _("yes") }}</a> / 
+                        <a href="#" onclick="$('#delete-comment-{{ comment.id }}').toggle(); return false;">{{ _("no") }}</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% endif %}
+        </div>
+
+        {% if comment.comments %}
+            <div class="comment-list">
+                <ol>
+                {% for child_comment in comment.comments %}
+                    {{ render_comment(child_comment) }}
+                {% endfor %}
+                </ol>
+            </div>
+        {% endif %}
+
+    </li>
+{% endmacro %}

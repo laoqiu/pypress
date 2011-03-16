@@ -1,0 +1,36 @@
+1. install
+requires:
+Flask
+Flask-Cache
+Flask-SQLAlchemy
+Flask-Principal
+Flask-WTF
+Flask-Mail
+Flask-Script
+Flask-Babel
+Flask-Themes
+markdown
+blinker
+
+install example:
+easy_install flask
+
+2. change config
+cd pypress
+vi pypress/config.cfg
+
+3. create databases:
+python manage.py createall
+
+4. create user
+create admin:
+python manage.py createcode -r admin
+create 3 member:
+python manage.py createcode -r member -n 3
+
+5. run
+python manage.py runserver
+
+6. signup
+http://localhost:8080/account/signup/
+

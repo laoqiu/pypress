@@ -1,0 +1,30 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_forms.html" import render_errors %}
+
+{%- block content %}
+<div class="content">
+    <h2 class="title">{{ _("Edit template") }}</h2>
+    <form method="POST" action=".">
+        {{ form.hidden_tag() }}
+        <table cellspacing="0" class="form-table">
+        <tbody>
+            <tr>
+                <th>Path</th>
+                <td>{{ path }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.html.label }}</th>
+                <td>{{ form.html(class="text", style="width:600px;height:300px;") }} {{ render_errors(form.html) }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>{{ form.submit(class="button") }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </form>
+</div>
+{%- endblock %}
+{%- block sidebar %}{%- endblock %}
+ 

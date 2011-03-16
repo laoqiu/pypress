@@ -1,0 +1,24 @@
+{% extends theme("layout.html") %}
+
+{% from "macros/_page.html" import paginate %}
+
+{%- block content %}
+<div class="content">
+{%- if page_obj.items %}
+    <h2 class="title">{{ _("Search results for") }} {{ request.args.get('q','') }}</h2>
+    {%- for post in page_obj.items %}
+    <div id="post-{{ post.id }}" class="post">
+        <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <div class="post-byline">
+            By <a href="{{ url_for('frontend.people', username=post.author.username) }}">{{ post.author.nickname }}</a>. <abbr title="{{ post.created_date|format_date('full') }}" class="time">{{ post.created_date|timesince }}</abbr>
+            {% if post.tags %} | {% for tag,url in post.linked_taglist %}<a href="{{ url }}">{{ tag }}</a>{{ loop.last and '...' or ',' }}{% endfor %}{% endif %}
+        </div>
+    </div>
+    {%- endfor %}
+    {{ paginate(page_obj, page_url) }}
+{%- else %}    
+    <h2 class="title error">{{ _("No posts found. Try a different search.") }} </h2>
+{%- endif %}
+</div>
+{%- endblock %}
+ 

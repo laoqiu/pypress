@@ -1,0 +1,188 @@
+2011-03-02 04:52:04,884 ERROR: Exception on / [GET] [in /usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py:672]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 861, in wsgi_app
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 696, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/root/www/pypress/pypress/views/frontend.py", line 39, in index
+    .paginate(page, per_page=Post.PER_PAGE)
+  File "/usr/local/lib/python2.6/dist-packages/Flask_SQLAlchemy-0.9.1-py2.6.egg/flaskext/sqlalchemy.py", line 268, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1453, in all
+    return list(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1565, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1570, in _execute_and_instances
+    mapper=self._mapper_zero_or_none())
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 734, in execute
+    return self._connection_for_bind(engine, close_with_result=True).execute(
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 699, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/base.py", line 1742, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 158, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 329, in __init__
+    rec = self._connection_record = pool.get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 177, in get
+    return self.do_get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 692, in do_get
+    con = self.create_connection()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 138, in create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 213, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 279, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/strategies.py", line 76, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/default.py", line 238, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "build/bdist.linux-i686/egg/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "build/bdist.linux-i686/egg/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
+2011-03-02 04:52:06,011 ERROR: Exception on / [GET] [in /usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py:672]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 861, in wsgi_app
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 696, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/root/www/pypress/pypress/views/frontend.py", line 39, in index
+    .paginate(page, per_page=Post.PER_PAGE)
+  File "/usr/local/lib/python2.6/dist-packages/Flask_SQLAlchemy-0.9.1-py2.6.egg/flaskext/sqlalchemy.py", line 268, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1453, in all
+    return list(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1565, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1570, in _execute_and_instances
+    mapper=self._mapper_zero_or_none())
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 734, in execute
+    return self._connection_for_bind(engine, close_with_result=True).execute(
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 699, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/base.py", line 1742, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 158, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 329, in __init__
+    rec = self._connection_record = pool.get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 177, in get
+    return self.do_get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 692, in do_get
+    con = self.create_connection()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 138, in create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 213, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 279, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/strategies.py", line 76, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/default.py", line 238, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "build/bdist.linux-i686/egg/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "build/bdist.linux-i686/egg/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
+2011-03-02 04:52:06,835 ERROR: Exception on / [GET] [in /usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py:672]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 861, in wsgi_app
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 696, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/root/www/pypress/pypress/views/frontend.py", line 39, in index
+    .paginate(page, per_page=Post.PER_PAGE)
+  File "/usr/local/lib/python2.6/dist-packages/Flask_SQLAlchemy-0.9.1-py2.6.egg/flaskext/sqlalchemy.py", line 268, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1453, in all
+    return list(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1565, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1570, in _execute_and_instances
+    mapper=self._mapper_zero_or_none())
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 734, in execute
+    return self._connection_for_bind(engine, close_with_result=True).execute(
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 699, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/base.py", line 1742, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 158, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 329, in __init__
+    rec = self._connection_record = pool.get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 177, in get
+    return self.do_get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 692, in do_get
+    con = self.create_connection()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 138, in create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 213, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 279, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/strategies.py", line 76, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/default.py", line 238, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "build/bdist.linux-i686/egg/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "build/bdist.linux-i686/egg/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
+2011-03-02 04:52:07,422 ERROR: Exception on / [GET] [in /usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py:672]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 861, in wsgi_app
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.6/dist-packages/Flask-0.6-py2.6.egg/flask/app.py", line 696, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/root/www/pypress/pypress/views/frontend.py", line 39, in index
+    .paginate(page, per_page=Post.PER_PAGE)
+  File "/usr/local/lib/python2.6/dist-packages/Flask_SQLAlchemy-0.9.1-py2.6.egg/flaskext/sqlalchemy.py", line 268, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1453, in all
+    return list(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1565, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/query.py", line 1570, in _execute_and_instances
+    mapper=self._mapper_zero_or_none())
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 734, in execute
+    return self._connection_for_bind(engine, close_with_result=True).execute(
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 699, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/base.py", line 1742, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 158, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 329, in __init__
+    rec = self._connection_record = pool.get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 177, in get
+    return self.do_get()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 692, in do_get
+    con = self.create_connection()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 138, in create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 213, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/pool.py", line 279, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/strategies.py", line 76, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.6/dist-packages/SQLAlchemy-0.6.3-py2.6.egg/sqlalchemy/engine/default.py", line 238, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "build/bdist.linux-i686/egg/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "build/bdist.linux-i686/egg/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
