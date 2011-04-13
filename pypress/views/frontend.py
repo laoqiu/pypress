@@ -174,9 +174,9 @@ def post(year, month, day, slug):
         return redirect(post.url)
 
     prev_post = Post.query.filter(Post.created_date<post.created_date) \
-                          .last()
-    next_post = Post.query.filter(Post.created_date>post.created_date) \
                           .first()
+    next_post = Post.query.filter(Post.created_date>post.created_date) \
+                          .order_by('created_date asc').first()
     
     return render_template("blog/view.html", 
                             post=post,

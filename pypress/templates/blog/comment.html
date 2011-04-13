@@ -1,1 +1,11 @@
-This is comment, you can edit it
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_identifier = '{{ post.url }}';
+var disqus_title = '{{ post.title }}';
+(function() {
+ var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+ dsq.src = 'http://laoqiu.disqus.com/embed.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+ })();
+</script>
+<noscript><p>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=laoqiu">comments powered by Disqus.</a></p></noscript>

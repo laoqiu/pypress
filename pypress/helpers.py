@@ -89,9 +89,11 @@ def render_template(template, **context):
     return render_theme_template(get_theme(), template, **context)
 
 def request_wants_json(request):
-    # we only accept json if the quality of json is greater than the
-    # quality of text/html because text/html is preferred to support
-    # browsers that accept on */*
+    """ 
+    we only accept json if the quality of json is greater than the
+    quality of text/html because text/html is preferred to support
+    browsers that accept on */*
+    """
     best = request.accept_mimetypes \
         .best_match(['application/json', 'text/html'])
     return best == 'application/json' and \
@@ -241,7 +243,6 @@ def gistcode(content):
     return content
 
 def code_highlight(value):
-
     f_list = _pre_re.findall(value)
 
     if f_list:

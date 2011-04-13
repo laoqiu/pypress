@@ -88,9 +88,7 @@ def configure_i18n(app):
 
     @babel.localeselector
     def get_locale():
-        accept_languages = app.config.get('ACCEPT_LANGUAGES', 
-                                               ['en'])
-
+        accept_languages = app.config.get('ACCEPT_LANGUAGES',['en','zh'])
         return request.accept_languages.best_match(accept_languages)
 
 
@@ -117,12 +115,11 @@ def configure_context_processors(app):
         archives = cache.get("archives")
         if archives is None:
             begin_post = Post.query.order_by('created_date').first()
-            end_post = Post.query.order_by('created_date desc').first()
             
             now = datetime.datetime.now()
 
             begin = begin_post.created_date if begin_post else now
-            end = end_post.created_date if end_post else now
+            end = now
 
             total = (end.year-begin.year)*12 - begin.month + end.month
             archives = [begin]

@@ -53,7 +53,7 @@ class PostQuery(BaseQuery):
         if post is None:
             abort(404)
         return post
-
+    
     def search(self, keywords):
 
         criteria = []
@@ -100,7 +100,7 @@ class Post(db.Model):
     content = db.Column(db.UnicodeText)
     num_comments = db.Column(db.Integer, default=0)
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
-    update_time = db.Column(db.DateTime, onupdate=datetime.utcnow)
+    update_time = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     _tags = db.Column("tags", db.Unicode(100), index=True)
 
