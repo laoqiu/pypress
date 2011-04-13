@@ -174,9 +174,9 @@ def post(year, month, day, slug):
         return redirect(post.url)
 
     prev_post = Post.query.filter(Post.created_date<post.created_date) \
-                          .order_by('created_date').first()
+                          .last()
     next_post = Post.query.filter(Post.created_date>post.created_date) \
-                          .order_by('created_date').first()
+                          .first()
     
     return render_template("blog/view.html", 
                             post=post,
@@ -188,6 +188,7 @@ def post(year, month, day, slug):
 @frontend.route("/<slug>/")
 @frontend.route("/<path:date>/<slug>/")
 def _post(slug, date=None):
+
     post = Post.query.get_by_slug(slug)
 
     return redirect(post.url)
