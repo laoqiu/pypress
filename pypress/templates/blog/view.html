@@ -11,7 +11,8 @@
         <div class="post-byline">
             By <a href="{{ url_for('frontend.people', username=post.author.username) }}">{{ post.author.nickname }}</a>. <abbr title="{{ post.created_date|format_date('full') }}" class="time">{{ post.created_date|timesince }}</abbr>
         </div>
-        {% if post.tags %}<div class="post-tags">{% for tag,url in post.linked_taglist %}<a href="{{ url }}">{{ tag }}</a>{{ loop.last and '...' or ', ' }}{% endfor %}</div>{% endif %}
+        {% if post.tags %}<div class="post-tags">{% for tag,url in
+        post.linked_taglist %}<a href="{{ url }}">{{ tag }}</a>{{ ', ' if not loop.last }}{% endfor %}</div>{% endif %}
         <div class="post-content">
             {{ post.content|code_highlight|gistcode|safe }}
         </div>
@@ -83,6 +84,7 @@
     {% include "blog/_postnow.html" %}
     {% include "blog/_search.html" %}
     {% include "blog/_tags.html" %}
+    {% include "blog/_comment.html" %}
     {% include "blog/_archive.html" %}
     {% include "blog/_links.html" %}
 </div>

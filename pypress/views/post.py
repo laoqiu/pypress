@@ -17,7 +17,7 @@ from flaskext.mail import Message
 from flaskext.babel import gettext as _
 
 from pypress import signals
-from pypress.helpers import render_template, cached
+from pypress.helpers import render_template, cached, ip2long
 from pypress.permissions import auth 
 from pypress.extensions import db
 
@@ -123,7 +123,7 @@ def add_comment(post_id, parent_id=None):
 
         comment = Comment(post=post,
                           parent=parent,
-                          ip=db.func.inet_aton(request.environ['REMOTE_ADDR']))
+                          ip=ip2long(request.environ['REMOTE_ADDR']))
         form.populate_obj(comment)
 
         if g.user:

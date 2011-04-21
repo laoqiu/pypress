@@ -11,6 +11,7 @@ import markdown
 import urlparse
 import functools
 import hashlib
+import socket, struct
 
 from datetime import datetime
 
@@ -265,3 +266,9 @@ def code2html(code, lang):
     formatter = HtmlFormatter()
     return highlight(code, lexer, formatter)
 
+def ip2long(ip):
+    return struct.unpack("!I",socket.inet_aton(ip))[0]
+
+def long2ip(num):
+    return socket.inet_ntoa(struct.pack("!I",num))
+    

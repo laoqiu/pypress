@@ -358,7 +358,10 @@ textarea.text:focus {
     border-bottom: 1px solid #eee;
     color: #999;
 }
-.sidebox a {
+.sidebox strong {
+    color: #333;    
+}
+.sidebox small a {
     color: #333;
 }
 .sidebox .more {

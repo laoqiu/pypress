@@ -1,0 +1,12 @@
+    <div id="comment" class="sidebox">
+        <h3>{{ _("Latest Comments") }}</h3>
+        <div class="inner">
+        {% if latest_comments %}
+            <ul>
+            {% for comment in latest_comments %}
+            <li><strong>{{ comment.author.nickname }}:</strong> <a href="{{ comment.url }}">{{ comment.comment }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+    </div>

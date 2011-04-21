@@ -128,6 +128,10 @@ def people(username, page=1):
         
         if status:
             flash(_("Twitter posting is success"), "success")
+
+            return redirect(url_for('frontend.people', 
+                                    username=username,
+                                    page=page))
         else:
             flash(_("Twitter posting is failed"), "error")
 

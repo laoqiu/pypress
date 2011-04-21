@@ -22,7 +22,7 @@ from flaskext.principal import Principal, RoleNeed, UserNeed, identity_loaded
 from flaskext.uploads import configure_uploads
 
 from pypress import views, helpers
-from pypress.models import User, Post, Tag, Link
+from pypress.models import User, Post, Tag, Link, Comment
 from pypress.extensions import db, mail, cache, photos
 from pypress.helpers import render_template
 
@@ -135,6 +135,15 @@ def configure_context_processors(app):
             cache.set("archives", archives)
         
         return dict(archives=archives)
+
+    @app.context_processor
+    def latest_comments():
+        latest_comments = cache.get("latest_comments")
+        if latest_comments is None:
+            latest_comments = Comment.query.order_by(Comment.created_date.desc()) \
+                                           .limit(5).all()
+            cache.set("latest_comments", latest_comments)
+        return dict(latest_comments=latest_comments)    
 
     @app.context_processor
     def config():
