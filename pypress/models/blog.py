@@ -73,9 +73,9 @@ class PostQuery(BaseQuery):
             return self
         
         criteria = []
-        criteria.append(db.func.year(Post.created_date)==year)
-        if month: criteria.append(db.func.month(Post.created_date)==month)
-        if day: criteria.append(db.func.day(Post.created_date)==day)
+        criteria.append(db.extract('year',Post.created_date)==year)
+        if month: criteria.append(db.extract('month',Post.created_date)==month)
+        if day: criteria.append(db.extract('day',Post.created_date)==day)
         
         q = reduce(db.and_, criteria)
         return self.filter(q)

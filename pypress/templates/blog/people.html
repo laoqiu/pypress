@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    {%- if people==g.user %}
+    {%- if people==g.user and config.get('TWITTER_KEY','') %}
     <div id="post_twitter">
         <form action="." method="POST">
             {{ form.hidden_tag() }}
@@ -24,10 +24,10 @@
     {%- endif %}
 
     <div id="tab">
-    	<ul>
+        <ul>
             <li><a href="#posts">{{ _("Posts") }}</a></li>
-    	    <li><a href="#tweets">{{ _("Tweets") }}</a></li>
-    	</ul>
+            <li><a href="#tweets">{{ _("Tweets") }}</a></li>
+        </ul>
     </div>
 
     <div id="posts">
@@ -66,6 +66,7 @@
 </div>
 {%- endblock %}
 {%- block js %}
+{{ super() }}
 <script type="text/javascript" src="{{ url_for('.static', filename="js/jquery.idTabs.min.js") }}"></script>
 <script type="text/javascript">
 $(function(){

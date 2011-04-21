@@ -135,8 +135,12 @@ def twitter():
     signature_method_hmac_sha1 = oauth.SignatureMethod_HMAC_SHA1()
     oauth_consumer             = oauth.Consumer(key=consumer_key, secret=consumer_secret)
     oauth_client               = oauth.Client(oauth_consumer)
-
-    resp, content = oauth_client.request(REQUEST_TOKEN_URL, 'GET')
+    
+    try:
+        resp, content = oauth_client.request(REQUEST_TOKEN_URL, 'GET')
+    except AttributeError:
+        flash(_("Can not connect twitter.com"))
+        return redirect(url_for('frontend.people',username=g.user.username))
 
     if resp['status'] != '200':
         return 'Invalid respond from Twitter requesting temp token: %s' % resp['status']
