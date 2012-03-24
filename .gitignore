@@ -7,3 +7,5 @@
 *.pid
 *.db
 *.swp
+# virtualenv
+env
