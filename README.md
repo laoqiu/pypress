@@ -1,6 +1,8 @@
 A team blog based on [Flask](http://flask.pocoo.org/)
 ===
 
+This project isn't supported at the moment, please see a newer [pypress-tornado](https://github.com/laoqiu/pypress-tornado)
+
 Thanks for flask_website and newsmeme at [http://flask.pocoo.org/community/poweredby/]
 
 ##Install
